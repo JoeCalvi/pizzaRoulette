@@ -16,4 +16,7 @@ create TABLE IF NOT EXISTS toppings(
 INSERT INTO toppings
 (name, type)
 VALUES
-("Peanuts", "Nut");
+("Shredded Carrots", "Vegetable");
+
+ALTER TABLE toppings
+ADD papaMurphys BOOLEAN COMMENT 'Has Topping';
