@@ -23,5 +23,17 @@ namespace pizzaRoulette.Repositories
             pizzaData.Id = id;
             return pizzaData;
         }
+
+        internal List<Pizza> GetAllPizzas()
+        {
+            string sql = @"
+            SELECT
+            *
+            FROM pizzas
+            ";
+
+            List<Pizza> pizzas = _db.Query<Pizza>(sql).ToList();
+            return pizzas;
+        }
     }
 }

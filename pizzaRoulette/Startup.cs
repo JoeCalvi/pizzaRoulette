@@ -37,6 +37,8 @@ public class Startup
     services.AddScoped<ToppingsService>();
     services.AddScoped<PizzasRepository>();
     services.AddScoped<PizzasService>();
+    services.AddScoped<PizzaToppingsRepository>();
+    services.AddScoped<PizzaToppingsService>();
   }
 
   private void ConfigureCors(IServiceCollection services)

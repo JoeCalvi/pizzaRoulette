@@ -25,5 +25,18 @@ namespace pizzaRoulette.Controllers
             }
         }
         
+        [HttpGet]
+        public ActionResult<List<Pizza>> GetAllPizzas()
+        {
+          try 
+          {
+            List<Pizza> pizzas = _pizzasService.GetAllPizzas();
+            return Ok(pizzas);
+          }
+          catch (Exception e)
+          {
+            return BadRequest(e.Message);
+          }
+        }
     }
 }

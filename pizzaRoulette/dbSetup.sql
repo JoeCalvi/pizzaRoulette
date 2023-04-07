@@ -41,3 +41,12 @@ create TABLE IF NOT EXISTS pizzas(
 ) default charset utf8 COMMENT '';
 
 DROP TABLE pizzas;
+
+create TABLE IF NOT EXISTS pizzaToppings(
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'PizzaTopping Id',
+  toppingId INT NOT NULL COMMENT 'Topping Id',
+  pizzaId INT NOT NULL COMMENT 'Pizza Id',
+
+  FOREIGN KEY (toppingId) REFERENCES toppings(id),
+  FOREIGN KEY (pizzaId) REFERENCES pizzas(id)
+) default charset utf8 COMMENT '';
