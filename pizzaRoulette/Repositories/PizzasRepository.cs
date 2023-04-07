@@ -28,11 +28,18 @@ namespace pizzaRoulette.Repositories
         {
             string sql = @"
             SELECT
-            *
-            FROM pizzas
+            pizza.*,
+            topping.*
+            FROM pizzas pizza
+            JOIN pizzaToppings topping ON topping.pizzaId = pizza.id
             ";
 
-            List<Pizza> pizzas = _db.Query<Pizza>(sql).ToList();
+            List<Pizza> pizzas = _db.Query<Pizza, PizzaTopping, Pizza>(sql, (pizza, pizzaTopping) => 
+            {
+                pizza.PizzaToppingId = pizzaTopping.Id;
+                pizza.PizzaTopping = pizzaTopping;
+                return pizza;
+            }).ToList();
             return pizzas;
         }
     }

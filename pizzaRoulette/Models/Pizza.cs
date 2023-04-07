@@ -3,6 +3,9 @@ namespace pizzaRoulette.Models
     public class Pizza
     {
         public int Id { get; set; }
+        
+        public int PizzaToppingId { get; set; }
+        public PizzaTopping PizzaTopping { get; set; }
         public int? CheeseId { get; set; }
         public int? SauceId { get; set; }
         public int? ToppingOneId { get; set; }
