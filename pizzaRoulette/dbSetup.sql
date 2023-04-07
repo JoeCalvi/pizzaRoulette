@@ -31,13 +31,13 @@ create TABLE IF NOT EXISTS pizzas(
   toppingFourId INT COMMENT 'Fourth Topping Id',
   toppingFiveId INT COMMENT 'Fifth Topping Id',
 
-  FOREIGN KEY (sauceId) REFERENCES toppings(id),
-  FOREIGN KEY (cheeseId) REFERENCES toppings(id),
-  FOREIGN KEY (toppingOneId) REFERENCES toppings(id),
-  FOREIGN KEY (toppingTwoId) REFERENCES toppings(id),
-  FOREIGN KEY (toppingThreeId) REFERENCES toppings(id),
-  FOREIGN KEY (toppingFourId) REFERENCES toppings(id),
-  FOREIGN KEY (toppingFiveId) REFERENCES toppings(id)
+  FOREIGN KEY (sauceId) REFERENCES toppings(id) ON DELETE CASCADE,
+  FOREIGN KEY (cheeseId) REFERENCES toppings(id) ON DELETE CASCADE,
+  FOREIGN KEY (toppingOneId) REFERENCES toppings(id) ON DELETE CASCADE,
+  FOREIGN KEY (toppingTwoId) REFERENCES toppings(id) ON DELETE CASCADE,
+  FOREIGN KEY (toppingThreeId) REFERENCES toppings(id) ON DELETE CASCADE,
+  FOREIGN KEY (toppingFourId) REFERENCES toppings(id) ON DELETE CASCADE,
+  FOREIGN KEY (toppingFiveId) REFERENCES toppings(id) ON DELETE CASCADE
 ) default charset utf8 COMMENT '';
 
 DROP TABLE pizzas;

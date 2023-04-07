@@ -12,7 +12,7 @@ namespace pizzaRoulette.Repositories
         internal Pizza CreatePizza(Pizza pizzaData)
         {
             string sql = @"
-            INSERT INTO PIZZAS
+            INSERT INTO pizzas
             (sauceId, cheeseId, toppingOneId, toppingTwoId, toppingThreeId, toppingFourId, toppingFiveId)
             VALUES
             (@sauceId, @cheeseId, @toppingOneId, @toppingTwoId, @toppingThreeId, @toppingFourId, @toppingFiveId);
