@@ -1,25 +1,36 @@
 import { AppState } from "../AppState";
 import { logger } from "../utils/Logger"
 import { api } from "./AxiosService";
+import { Topping } from "../models/Topping.js";
+import { Sauce } from "../models/Sauce.js";
+import { Cheese } from "../models/Cheese";
+import { Meat } from "../models/Meat";
+import { Veggie } from "../models/Veggie";
+import { Fruit } from "../models/Fruit";
 
 class ToppingsService {
 
     async getAllToppings() {
         const res = await api.get('api/toppings')
-        AppState.toppings = res.data.filter(t => t.type != "Sauce")
+        const toppings = res.data.filter(t => t.type != "Sauce")
+        AppState.toppings = toppings.map(t => new Topping(t))
+
         const sauces = res.data.filter(t => t.type == "Sauce")
-        AppState.sauces = sauces
+        AppState.sauces = sauces.map(s => new Sauce(s))
 
         const cheese = AppState.toppings.filter(t => t.type == "Cheese")
-        AppState.cheese = cheese
+        AppState.cheese = cheese.map(c => new Cheese(c))
 
 
         const meats = AppState.toppings.filter(t => t.type == "Meat")
-        AppState.meatToppings = meats
+        AppState.meatToppings = meats.map(m => new Meat(m))
 
 
         const veggies = AppState.toppings.filter(t => t.type == "Vegetable" || t.type == "Herb" || t.type == "Spice")
-        AppState.vegetableToppings = veggies
+        AppState.vegetableToppings = veggies.map(v => new Veggie(v))
+
+        const fruits = AppState.toppings.filter(t => t.type == "Fruit")
+        AppState.fruitToppings = fruits.map(f => new Fruit(f))
 
 
         // logger.log('Appstate Toppings:', AppState.toppings)
@@ -27,6 +38,7 @@ class ToppingsService {
         // logger.log('Appstate Cheese:', AppState.cheese)
         // logger.log('Appstate MeatToppings:', AppState.meatToppings)
         // logger.log('Appstate VeggieToppings:', AppState.vegetableToppings)
+        // logger.log('Appstate Fruits:', AppState.fruitToppings)
     }
 
     generateRandomPizza() {

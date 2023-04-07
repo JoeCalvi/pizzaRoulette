@@ -19,4 +19,4 @@ VALUES
 ("Shredded Carrots", "Vegetable");
 
 ALTER TABLE toppings
-ADD papaMurphys BOOLEAN COMMENT 'Has Topping';
+ADD traditional BOOLEAN COMMENT 'Is Traditional Topping';
