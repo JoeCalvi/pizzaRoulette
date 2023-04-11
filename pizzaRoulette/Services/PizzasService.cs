@@ -41,5 +41,11 @@ namespace pizzaRoulette.Services
             Favorite favorite = _repo.CreateFavorite(favoriteData);
             return favorite;
         }
+
+        internal string DeletePizza(int pizzaId)
+        {
+            _repo.DeletePizza(pizzaId);
+            return "Pizza deleted.";
+        }
     }
 }

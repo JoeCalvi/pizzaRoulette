@@ -87,5 +87,16 @@ namespace pizzaRoulette.Repositories
             favoriteData.Id = id;
             return favoriteData;
         }
+
+        internal void DeletePizza(int pizzaId)
+        {
+            string sql = @"
+            DELETE FROM pizzas
+            WHERE id = @pizzaId;
+            ";
+
+            _db.Execute(sql, new { pizzaId });
+            return;
+        }
     }
 }

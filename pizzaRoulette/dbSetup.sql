@@ -33,8 +33,8 @@ create TABLE IF NOT EXISTS pizzaToppings(
   toppingId INT NOT NULL COMMENT 'Topping Id',
   pizzaId INT NOT NULL COMMENT 'Pizza Id',
 
-  FOREIGN KEY (toppingId) REFERENCES toppings(id),
-  FOREIGN KEY (pizzaId) REFERENCES pizzas(id)
+  FOREIGN KEY (toppingId) REFERENCES toppings(id) ON DELETE CASCADE,
+  FOREIGN KEY (pizzaId) REFERENCES pizzas(id) ON DELETE CASCADE
 ) default charset utf8 COMMENT '';
 
 DROP TABLE pizzaToppings;
@@ -46,6 +46,8 @@ CREATE TABLE IF NOT EXISTS favorites(
   name VARCHAR(30) NOT NULL COMMENT 'Favorite Name',
   toppings INT NOT NULL COMMENT 'Amount of Toppings',
 
-  FOREIGN KEY (accountId) REFERENCES accounts(id),
-  FOREIGN KEY (pizzaId) REFERENCES pizzas(id)
+  FOREIGN KEY (accountId) REFERENCES accounts(id) ON DELETE CASCADE,
+  FOREIGN KEY (pizzaId) REFERENCES pizzas(id) ON DELETE CASCADE
 ) default charset utf8 COMMENT '';
+
+DROP TABLE favorites;
