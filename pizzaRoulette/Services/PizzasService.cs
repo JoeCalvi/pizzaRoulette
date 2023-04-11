@@ -33,5 +33,13 @@ namespace pizzaRoulette.Services
             List<PizzaTopping> toppings = _repo.GetToppingsByPizzaId(pizza.Id);
             return toppings;
         }
+
+        internal Favorite CreateFavorite(Favorite favoriteData)
+        {
+            Pizza pizza = this.GetPizzaById(favoriteData.PizzaId);
+            favoriteData.Toppings = pizza.Toppings;
+            Favorite favorite = _repo.CreateFavorite(favoriteData);
+            return favorite;
+        }
     }
 }

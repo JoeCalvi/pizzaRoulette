@@ -72,5 +72,20 @@ namespace pizzaRoulette.Repositories
             }, new { pizzaId }).ToList();
             return toppings;
         }
+
+        internal Favorite CreateFavorite(Favorite favoriteData)
+        {
+            string sql = @"
+            INSERT INTO favorites
+            (accountId, pizzaId, name, toppings)
+            VALUES
+            (@accountId, @pizzaId, @name, @toppings);
+            SELECT LAST_INSERT_ID();
+            ";
+
+            int id = _db.ExecuteScalar<int>(sql, favoriteData);
+            favoriteData.Id = id;
+            return favoriteData;
+        }
     }
 }

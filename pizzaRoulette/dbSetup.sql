@@ -38,3 +38,14 @@ create TABLE IF NOT EXISTS pizzaToppings(
 ) default charset utf8 COMMENT '';
 
 DROP TABLE pizzaToppings;
+
+CREATE TABLE IF NOT EXISTS favorites(
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'Favorite Id',
+  accountId VARCHAR(255) NOT NULL COMMENT 'Account Id',
+  pizzaId INT NOT NULL COMMENT 'Pizza Id',
+  name VARCHAR(30) NOT NULL COMMENT 'Favorite Name',
+  toppings INT NOT NULL COMMENT 'Amount of Toppings',
+
+  FOREIGN KEY (accountId) REFERENCES accounts(id),
+  FOREIGN KEY (pizzaId) REFERENCES pizzas(id)
+) default charset utf8 COMMENT '';
