@@ -48,7 +48,7 @@
 import { ref } from 'vue';
 import { logger } from '../utils/Logger';
 import Pop from '../utils/Pop';
-// import { pizzasService } from "../services/PizzasService.js";
+import { pizzasService } from "../services/PizzasService.js";
 
 export default {
     setup() {
@@ -57,14 +57,14 @@ export default {
         return {
             editable,
 
-            // async createPizza() {
-            //     try {
-            //         await pizzasService.createPizza()
-            //     } catch (error) {
-            //         logger.error(error)
-            //         Pop.error(error)
-            //     }
-            // }
+            async createPizza() {
+                try {
+                    await pizzasService.createPizza()
+                } catch (error) {
+                    logger.error(error)
+                    Pop.error(error)
+                }
+            }
         }
     }
 }

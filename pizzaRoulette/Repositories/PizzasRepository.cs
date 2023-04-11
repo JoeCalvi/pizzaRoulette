@@ -13,9 +13,9 @@ namespace pizzaRoulette.Repositories
         {
             string sql = @"
             INSERT INTO pizzas
-            (toppings)
+            (toppings, pizzaFrom, restriction)
             VALUES
-            (@toppings);
+            (@toppings, @pizzaFrom, @restriction);
             SELECT LAST_INSERT_ID();
             ";
 

@@ -5,6 +5,8 @@ namespace pizzaRoulette.Models
         public int Id { get; set; }
         
         public int Toppings { get; set; }
+        public string PizzaFrom { get; set; }
+        public string Restriction { get; set; }
         
     }
 }

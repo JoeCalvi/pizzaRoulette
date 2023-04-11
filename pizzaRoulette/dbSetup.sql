@@ -23,7 +23,9 @@ ADD traditional BOOLEAN COMMENT 'Is Traditional Topping';
 
 create TABLE IF NOT EXISTS pizzas(
   id int NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'Pizza Id',
-  toppings int NOT NULL COMMENT 'Amount of Toppings'
+  toppings int NOT NULL COMMENT 'Amount of Toppings',
+  pizzaFrom VARCHAR(30) NOT NULL COMMENT 'Where Pizza is From',
+  restriction VARCHAR(30) NOT NULL COMMENT 'Dietary Restriction'
 ) default charset utf8 COMMENT '';
 
 DROP TABLE pizzas;
