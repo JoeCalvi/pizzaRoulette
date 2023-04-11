@@ -48,5 +48,29 @@ namespace pizzaRoulette.Repositories
             Pizza pizza = _db.Query<Pizza>(sql, new { pizzaId }).FirstOrDefault();
             return pizza;
         }
+
+        internal List<PizzaTopping> GetToppingsByPizzaId(int pizzaId)
+        {
+            string sql = @"
+            SELECT
+            pt.*,
+            pizza.*,
+            topping.*
+            FROM pizzaToppings pt
+            JOIN pizzas pizza ON pizza.id = pt.pizzaId
+            JOIN toppings topping ON topping.id = pt.toppingId
+            WHERE pt.pizzaId = @pizzaId;
+            ";
+
+            List<PizzaTopping> toppings = _db.Query<PizzaTopping, Pizza, Topping, PizzaTopping>(sql, (pt, pizza, topping) => 
+            {
+                pt.PizzaId = pizza.Id;
+                pt.Pizza = pizza;
+                pt.ToppingId = topping.Id;
+                pt.Topping = topping;
+                return pt;
+            }, new { pizzaId }).ToList();
+            return toppings;
+        }
     }
 }
