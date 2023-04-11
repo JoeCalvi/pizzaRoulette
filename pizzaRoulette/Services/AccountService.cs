@@ -31,6 +31,12 @@ public class AccountService
     original.Picture = editData.Picture.Length > 0 ? editData.Picture : original.Picture;
     return _repo.Edit(original);
   }
+
+    internal List<Favorite> GetMyFavorites()
+    {
+        List<Favorite> favorites = _repo.GetMyFavorites();
+        return favorites;
+    }
 }
 
 

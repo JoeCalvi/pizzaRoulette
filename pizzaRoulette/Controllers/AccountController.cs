@@ -46,4 +46,19 @@ public class AccountController : ControllerBase
       return BadRequest(e.Message);
     }
   }
+
+  [HttpGet("favorites")]
+  [Authorize]
+  public ActionResult<List<Favorite>> GetMyFavorites()
+  {
+    try 
+    {
+      List<Favorite> favorites = _accountService.GetMyFavorites();
+      return favorites;
+    }
+    catch (Exception e)
+    {
+      return BadRequest(e.Message);
+    }
+  }
 }

@@ -43,5 +43,17 @@ public class AccountsRepository
     _db.Execute(sql, update);
     return update;
   }
+
+    internal List<Favorite> GetMyFavorites()
+    {
+        string sql = @"
+        SELECT
+        *
+        FROM favorites;
+        ";
+
+        List<Favorite> favorites = _db.Query<Favorite>(sql).ToList();
+        return favorites;
+    }
 }
 
