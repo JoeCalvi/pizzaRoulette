@@ -1,8 +1,10 @@
 <template>
   <div class="container-fluid">
-    <div class="row">
-      <div class="col-12 d-flex flex-column justify-content-center align-items-center">
-        <button @click="generateRandomPizza()" class="btn btn-danger"><i class="mdi mdi-pizza"></i></button>
+    <div class="row page-height">
+      <div class="col-12 d-flex justify-content-center align-items-center">
+        <div class="glass-card">
+          <PizzaForm />
+        </div>
       </div>
     </div>
   </div>
@@ -14,52 +16,48 @@ import Pop from '../utils/Pop';
 import { toppingsService } from "../services/ToppingsService";
 import { onMounted, computed } from 'vue';
 import { AppState } from '../AppState';
+import PizzaForm from '../components/PizzaForm.vue';
 
 export default {
   setup() {
 
     async function getAllToppings() {
       try {
-        await toppingsService.getAllToppings()
-      } catch (error) {
-        Pop.error(error)
-        logger.log(error)
+        await toppingsService.getAllToppings();
+      }
+      catch (error) {
+        Pop.error(error);
+        logger.log(error);
       }
     }
 
     onMounted(() => {
-      getAllToppings()
-    })
+      getAllToppings();
+    });
+
     return {
       toppings: computed(() => AppState.toppings),
 
       generateRandomPizza() {
-        toppingsService.generateRandomPizza()
+        toppingsService.generateRandomPizza();
       }
-
-    }
-  }
+    };
+  },
+  components: { PizzaForm }
 }
 </script>
 
 <style scoped lang="scss">
-.home {
-  display: grid;
-  height: 80vh;
-  place-content: center;
-  text-align: center;
-  user-select: none;
+.page-height {
+  height: 84vh;
+}
 
-  .home-card {
-    width: 50vw;
-
-    >img {
-      height: 200px;
-      max-width: 200px;
-      width: 100%;
-      object-fit: contain;
-      object-position: center;
-    }
-  }
+.glass-card {
+  background-color: rgba(100, 108, 105, 0.731);
+  padding: 5vw;
+  padding-bottom: 4vw;
+  border-radius: 10%;
+  color: white;
+  text-shadow: 1px 1px 2px black;
 }
 </style>
