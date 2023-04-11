@@ -1,18 +1,20 @@
 <template>
-    <form @submit.prevent="">
+    <form @submit.prevent="createPizza()">
         <div class="mb-3">
-            <select class="form-select border border-danger" aria-label="Default select example">
+            <select v-model="editable.pizzaFrom" class="form-select border border-danger"
+                aria-label="Default select example">
                 <option selected>Where are you eating?</option>
-                <option value="1">Home</option>
-                <option value="2">Domino's</option>
-                <option value="3">Little Caesar's</option>
-                <option value="4">Papa John's</option>
-                <option value="5">Papa Murphy's</option>
-                <option value="6">Pizza Hut</option>
+                <option value="Home">Home</option>
+                <option value="Domino's">Domino's</option>
+                <option value="Little Caesar's">Little Caesar's</option>
+                <option value="Papa John's">Papa John's</option>
+                <option value="Papa Murphy's">Papa Murphy's</option>
+                <option value="Pizza Hut">Pizza Hut</option>
             </select>
         </div>
         <div class="mb-3">
-            <select class="form-select border border-danger" aria-label="Default select example">
+            <select v-model="editable.toppings" class="form-select border border-danger"
+                aria-label="Default select example">
                 <option selected>How many toppings do you want?</option>
                 <option value="1">One</option>
                 <option value="2">Two</option>
@@ -22,11 +24,12 @@
             </select>
         </div>
         <div class="mb-3">
-            <select class="form-select border border-danger" aria-label="Default select example">
+            <select v-model="editable.restriction" class="form-select border border-danger"
+                aria-label="Default select example">
                 <option selected>Do you have any restrictions?</option>
-                <option value="1">None</option>
-                <option value="2">Vegetarian</option>
-                <option value="3">Nut Allergy</option>
+                <option value="None">None</option>
+                <option value="Vegetarian">Vegetarian</option>
+                <option value="Nut Allergy">Nut Allergy</option>
             </select>
         </div>
         <div class="mb-4 d-flex justify-content-center">
@@ -59,7 +62,8 @@ export default {
 
             async createPizza() {
                 try {
-                    await pizzasService.createPizza()
+                    const pizzaData = editable.value
+                    await pizzasService.createPizza(pizzaData)
                 } catch (error) {
                     logger.error(error)
                     Pop.error(error)

@@ -1,8 +1,11 @@
+import { logger } from "../utils/Logger.js";
+import { api } from "./AxiosService.js";
 
 class PizzasService {
 
-    async createPizza() {
-        const res = await api.post('api/pizzas')
+    async createPizza(pizzaData) {
+        const res = await api.post('api/pizzas', pizzaData)
+        logger.log(res.data)
     }
 }
 
