@@ -3,7 +3,8 @@
     <div class="row page-height">
       <div class="col-12 d-flex justify-content-center align-items-center">
         <div class="glass-card">
-          <PizzaForm />
+          <!-- <PizzaForm /> -->
+          <img class="pizza-img" src="https://www.svgrepo.com/show/49346/italian-pizza-cut-into-slices.svg" alt="">
         </div>
       </div>
     </div>
@@ -59,5 +60,10 @@ export default {
   border-radius: 10%;
   color: white;
   text-shadow: 1px 1px 2px black;
+}
+
+.pizza-img {
+  width: 30vw;
+  transform: rotateZ(180);
 }
 </style>
