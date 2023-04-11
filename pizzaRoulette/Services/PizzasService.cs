@@ -20,5 +20,11 @@ namespace pizzaRoulette.Services
             List<Pizza> pizzas = _repo.GetAllPizzas();
             return pizzas;
         }
+
+        internal Pizza GetPizzaById(int pizzaId)
+        {
+            Pizza pizza = _repo.GetPizzaById(pizzaId);
+            return pizza;
+        }
     }
 }

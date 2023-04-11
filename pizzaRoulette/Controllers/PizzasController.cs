@@ -38,5 +38,19 @@ namespace pizzaRoulette.Controllers
             return BadRequest(e.Message);
           }
         }
+
+        [HttpGet("{pizzaId}")]
+        public ActionResult<Pizza> GetPizzaById(int pizzaId)
+        {
+          try 
+          {
+            Pizza pizza = _pizzasService.GetPizzaById(pizzaId);
+            return Ok(pizza);
+          }
+          catch (Exception e)
+          {
+            return BadRequest(e.Message);
+          }
+        }
     }
 }

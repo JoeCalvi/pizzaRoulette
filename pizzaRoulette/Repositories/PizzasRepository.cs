@@ -13,9 +13,9 @@ namespace pizzaRoulette.Repositories
         {
             string sql = @"
             INSERT INTO pizzas
-            (sauceId, cheeseId, toppingOneId, toppingTwoId, toppingThreeId, toppingFourId, toppingFiveId)
+            (toppings)
             VALUES
-            (@sauceId, @cheeseId, @toppingOneId, @toppingTwoId, @toppingThreeId, @toppingFourId, @toppingFiveId);
+            (@toppings);
             SELECT LAST_INSERT_ID();
             ";
 
@@ -28,19 +28,25 @@ namespace pizzaRoulette.Repositories
         {
             string sql = @"
             SELECT
-            pizza.*,
-            topping.*
-            FROM pizzas pizza
-            JOIN pizzaToppings topping ON topping.pizzaId = pizza.id
+            *
+            FROM pizzas
             ";
 
-            List<Pizza> pizzas = _db.Query<Pizza, PizzaTopping, Pizza>(sql, (pizza, pizzaTopping) => 
-            {
-                pizza.PizzaToppingId = pizzaTopping.Id;
-                pizza.PizzaTopping = pizzaTopping;
-                return pizza;
-            }).ToList();
+            List<Pizza> pizzas = _db.Query<Pizza>(sql).ToList();
             return pizzas;
+        }
+
+        internal Pizza GetPizzaById(int pizzaId)
+        {
+            string sql = @"
+            SELECT
+            *
+            FROM pizzas
+            WHERE id = @pizzaId;
+            ";
+
+            Pizza pizza = _db.Query<Pizza>(sql, new { pizzaId }).FirstOrDefault();
+            return pizza;
         }
     }
 }
