@@ -2,10 +2,10 @@
   <header>
     <Navbar />
   </header>
-  <main>
+  <main class="bg-white">
     <router-view />
   </main>
-  <footer class="bg-dark text-light">
+  <footer class="bg-danger text-light">
   </footer>
 </template>
 

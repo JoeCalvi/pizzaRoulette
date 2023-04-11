@@ -1,13 +1,6 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
-      aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-      <!-- LOGIN COMPONENT HERE -->
-      <Login />
-    </div>
+  <nav class="elevation-3 bg-danger px-3 d-flex justify-content-end align-items-center">
+    <Login />
   </nav>
 </template>
 

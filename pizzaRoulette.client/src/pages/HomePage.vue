@@ -2,10 +2,6 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-12 d-flex flex-column justify-content-center align-items-center">
-        <div class="mb-3">
-          <label for="name">Pizza Name</label>
-          <input class="form-control" type="text">
-        </div>
         <button @click="generateRandomPizza()" class="btn btn-danger"><i class="mdi mdi-pizza"></i></button>
       </div>
     </div>
