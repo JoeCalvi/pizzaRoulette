@@ -37,6 +37,20 @@ public class AccountService
         List<Favorite> favorites = _repo.GetMyFavorites();
         return favorites;
     }
+
+    internal Favorite GetFavoriteById(int favoriteId)
+    {
+      Favorite favorite = _repo.GetFavoriteById(favoriteId);
+      return favorite;
+    }
+
+    internal string DeleteFavorite(string userId, int favoriteId)
+    {
+        Favorite favorite = this.GetFavoriteById(favoriteId);
+        if(favorite.AccountId != userId) throw new Exception("This favorite does not belong to you.");
+        _repo.DeleteFavorite(favoriteId);
+        return "Favorite deleted.";
+    }
 }
 
 

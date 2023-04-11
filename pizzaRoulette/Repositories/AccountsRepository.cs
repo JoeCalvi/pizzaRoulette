@@ -55,5 +55,29 @@ public class AccountsRepository
         List<Favorite> favorites = _db.Query<Favorite>(sql).ToList();
         return favorites;
     }
+
+    internal Favorite GetFavoriteById(int favoriteId)
+    {
+        string sql = @"
+        SELECT
+        *
+        FROM favorites
+        WHERE id = @favoriteId;
+        ";
+
+        Favorite favorite = _db.Query<Favorite>(sql, new { favoriteId }).FirstOrDefault();
+        return favorite;
+    }
+
+    internal void DeleteFavorite(int favoriteId)
+    {
+        string sql = @"
+        DELETE FROM favorites
+        WHERE id = @favoriteId;
+        ";
+
+        _db.Execute(sql, new { favoriteId} );
+        return;
+    }
 }
 
