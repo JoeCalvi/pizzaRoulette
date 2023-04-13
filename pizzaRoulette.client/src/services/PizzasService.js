@@ -10,10 +10,18 @@ class PizzasService {
 
         const toppingCount = AppState.pizza.toppings
         for (let i = 0; i <= (toppingCount - 1); i++) {
-            let roll = Math.floor(Math.random() * (AppState.toppings.length))
-            let topping = AppState.toppings[roll]
-            const pizzaTopping = await api.post(`api/pizzaToppings`, { pizzaId: AppState.pizza.id, toppingId: topping.id })
-            logger.log(pizzaTopping.data)
+            if (AppState.pizza.crazy) {
+                let roll = Math.floor(Math.random() * (AppState.toppings.length))
+                let topping = AppState.toppings[roll]
+                const pizzaTopping = await api.post(`api/pizzaToppings`, { pizzaId: AppState.pizza.id, toppingId: topping.id })
+                logger.log(pizzaTopping.data)
+            } else {
+                let traditionalToppings = AppState.toppings.filter(t => t.traditional == true)
+                let roll = Math.floor(Math.random() * (traditionalToppings.length))
+                let topping = traditionalToppings[roll]
+                const pizzaTopping = await api.post(`api/pizzaToppings`, { pizzaId: AppState.pizza.id, toppingId: topping.id })
+                logger.log(pizzaTopping.data)
+            }
         }
     }
 

@@ -30,6 +30,9 @@ create TABLE IF NOT EXISTS pizzas(
 
 DROP TABLE pizzas;
 
+ALTER TABLE pizzas
+ADD crazy BOOLEAN DEFAULT FALSE COMMENT "T/F Only Traditional";
+
 create TABLE IF NOT EXISTS pizzaToppings(
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'PizzaTopping Id',
   toppingId INT NOT NULL COMMENT 'Topping Id',

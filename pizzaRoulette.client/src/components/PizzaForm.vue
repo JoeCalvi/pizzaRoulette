@@ -33,7 +33,8 @@
         </div>
         <div class="mb-4 d-flex justify-content-center">
             <div class="form-check">
-                <input class="form-check-input border border-danger" type="checkbox" value="" id="flexCheckDefault">
+                <input v-model="editable.crazy" class="form-check-input border border-danger" type="checkbox" value=""
+                    id="flexCheckDefault">
                 <label class="form-check-label" for="flexCheckDefault">
                     I'm feeling CRAZY.
                 </label>

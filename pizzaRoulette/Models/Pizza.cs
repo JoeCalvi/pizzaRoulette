@@ -7,6 +7,7 @@ namespace pizzaRoulette.Models
         public int Toppings { get; set; }
         public string PizzaFrom { get; set; }
         public string Restriction { get; set; }
+        public bool Crazy { get; set; }
         
     }
 }
