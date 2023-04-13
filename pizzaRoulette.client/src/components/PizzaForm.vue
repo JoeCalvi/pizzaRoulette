@@ -3,7 +3,6 @@
         <div class="mb-3">
             <select v-model="editable.pizzaFrom" class="form-select border border-danger"
                 aria-label="Default select example">
-                <option selected>Where are you eating?</option>
                 <option value="Home">Home</option>
                 <option value="Domino's">Domino's</option>
                 <option value="Little Caesar's">Little Caesar's</option>
@@ -52,18 +51,27 @@ import { ref } from 'vue';
 import { logger } from '../utils/Logger';
 import Pop from '../utils/Pop';
 import { pizzasService } from "../services/PizzasService.js";
+import { useRouter } from 'vue-router';
+import { AppState } from '../AppState';
 
 export default {
     setup() {
-        const editable = ref({})
+        const editable = ref({
+            pizzaFrom: "Home",
+            toppings: 2,
+            restriction: "None"
+        })
+        const router = useRouter()
 
         return {
             editable,
+            router,
 
             async createPizza() {
                 try {
                     const pizzaData = editable.value
                     await pizzasService.createPizza(pizzaData)
+                    router.push({ name: 'Pizza', params: { pizzaId: AppState.pizza?.id } })
                 } catch (error) {
                     logger.error(error)
                     Pop.error(error)

@@ -53,15 +53,6 @@ class ToppingsService {
         let topping2 = AppState.toppings[toppingsRoll2]
         let toppingsRoll3 = Math.floor(Math.random() * (AppState.toppings.length))
         let topping3 = AppState.toppings[toppingsRoll3]
-
-        AppState.pizza = {
-            "Sauce": sauce,
-            "Cheese": cheese,
-            "Topping1": topping1,
-            "Topping2": topping2,
-            "Topping3": topping3
-        }
-        logger.log("Your Pizza, sir:", AppState.pizza)
     }
 }
 

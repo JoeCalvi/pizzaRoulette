@@ -3,8 +3,8 @@
     <div class="row page-height">
       <div class="col-12 d-flex justify-content-center align-items-center">
         <div class="glass-card">
-          <!-- <PizzaForm /> -->
-          <img class="pizza-img" src="https://www.svgrepo.com/show/49346/italian-pizza-cut-into-slices.svg" alt="">
+          <PizzaForm />
+          <!-- <img class="pizza-img" src="https://www.svgrepo.com/show/49346/italian-pizza-cut-into-slices.svg" alt=""> -->
         </div>
       </div>
     </div>
