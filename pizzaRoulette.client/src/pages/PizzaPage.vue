@@ -6,7 +6,9 @@
                     <div class="glass-card text-center">
                         <div v-for="p in pizzaToppings" class="d-flex justify-content-between mb-3">
                             <h2>{{ p?.topping.name }}</h2>
-                            <button class="btn btn-danger text-white"><i class="mdi mdi-sync"></i></button>
+                            <button class="btn btn-danger text-white"
+                                @click="respinPizzaTopping(`${p?.topping.id}`, `${p?.id}`)"><i
+                                    class="mdi mdi-sync"></i></button>
                         </div>
                     </div>
                 </div>
@@ -58,10 +60,17 @@ export default {
         })
 
         return {
+            route,
             pizzaToppings: computed(() => AppState.pizzaToppings),
 
-            async respinPizzaTopping() {
-
+            async respinPizzaTopping(toppingId, pizzaToppingId) {
+                try {
+                    const pizzaId = route.params.pizzaId
+                    await pizzasService.respinPizzaTopping(toppingId, pizzaToppingId, pizzaId)
+                } catch (error) {
+                    logger.error(error)
+                    Pop.error(error)
+                }
             }
         }
     }

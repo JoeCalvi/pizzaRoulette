@@ -132,6 +132,13 @@ class PizzasService {
         AppState.pizzaToppings = res.data
         logger.log(AppState.pizzaToppings)
     }
+
+    async respinPizzaTopping(toppingId, pizzaToppingId, pizzaId) {
+        const res1 = await api.delete(`api/pizzaToppings/${pizzaToppingId}`)
+        logger.log(res1.data)
+        const res2 = await api.post(`api/pizzaToppings`, { pizzaId: pizzaId, toppingId: toppingId })
+        logger.log(res2.data)
+    }
 }
 
 export const pizzasService = new PizzasService();
