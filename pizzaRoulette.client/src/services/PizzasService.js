@@ -24,7 +24,7 @@ class PizzasService {
                     logger.log("dominos:", pizzaTopping.data)
 
                 } else if (AppState.pizza.pizzaFrom == "Domino's" && AppState.pizza.restriction == "Vegetarian") {
-                    let dominosToppings = AppState.toppings.filter(t => t.dominos == true && t.type == "Vegetable")
+                    let dominosToppings = AppState.toppings.filter(t => t.dominos == true && t.type != "Meat")
                     let roll = Math.floor(Math.random() * (dominosToppings.length))
                     let topping = dominosToppings[roll]
                     const pizzaTopping = await api.post(`api/pizzaToppings`, { pizzaId: AppState.pizza.id, toppingId: topping.id })
@@ -37,27 +37,74 @@ class PizzasService {
                     const pizzaTopping = await api.post(`api/pizzaToppings`, { pizzaId: AppState.pizza.id, toppingId: topping.id })
                     logger.log("dominos:", pizzaTopping.data)
 
-                }
-                else if (AppState.pizza.pizzaFrom == "Little Caesar's") {
+                } else if (AppState.pizza.pizzaFrom == "Little Caesar's" && AppState.pizza.restriction == "None") {
                     let caesarsToppings = AppState.toppings.filter(t => t.littleCaesars == true)
                     let roll = Math.floor(Math.random() * (caesarsToppings.length))
                     let topping = caesarsToppings[roll]
                     const pizzaTopping = await api.post(`api/pizzaToppings`, { pizzaId: AppState.pizza.id, toppingId: topping.id })
                     logger.log("little caesars:", pizzaTopping.data)
-                } else if (AppState.pizza.pizzaFrom == "Papa John's") {
+                } else if (AppState.pizza.pizzaFrom == "Little Caesar's" && AppState.pizza.restriction == "Vegetarian") {
+                    let caesarsToppings = AppState.toppings.filter(t => t.littleCaesars == true && t.type != "Meat")
+                    let roll = Math.floor(Math.random() * (caesarsToppings.length))
+                    let topping = caesarsToppings[roll]
+                    const pizzaTopping = await api.post(`api/pizzaToppings`, { pizzaId: AppState.pizza.id, toppingId: topping.id })
+                    logger.log("little caesars:", pizzaTopping.data)
+                } else if (AppState.pizza.pizzaFrom == "Little Caesar's" && AppState.pizza.restriction == "Nut Allergy") {
+                    let caesarsToppings = AppState.toppings.filter(t => t.littleCaesars == true && t.type != "Nut" && t.name != "Pesto")
+                    let roll = Math.floor(Math.random() * (caesarsToppings.length))
+                    let topping = caesarsToppings[roll]
+                    const pizzaTopping = await api.post(`api/pizzaToppings`, { pizzaId: AppState.pizza.id, toppingId: topping.id })
+                    logger.log("little caesars:", pizzaTopping.data)
+                } else if (AppState.pizza.pizzaFrom == "Papa John's" && AppState.pizza.restriction == "None") {
                     let johnsToppings = AppState.toppings.filter(t => t.papaJohns == true)
                     let roll = Math.floor(Math.random() * (johnsToppings.length))
                     let topping = johnsToppings[roll]
                     const pizzaTopping = await api.post(`api/pizzaToppings`, { pizzaId: AppState.pizza.id, toppingId: topping.id })
                     logger.log("papa johns:", pizzaTopping.data)
-                } else if (AppState.pizza.pizzaFrom == "Papa Murphy's") {
+                } else if (AppState.pizza.pizzaFrom == "Papa John's" && AppState.pizza.restriction == "Vegetarian") {
+                    let johnsToppings = AppState.toppings.filter(t => t.papaJohns == true && t.type != "Meat")
+                    let roll = Math.floor(Math.random() * (johnsToppings.length))
+                    let topping = johnsToppings[roll]
+                    const pizzaTopping = await api.post(`api/pizzaToppings`, { pizzaId: AppState.pizza.id, toppingId: topping.id })
+                    logger.log("papa johns:", pizzaTopping.data)
+                } else if (AppState.pizza.pizzaFrom == "Papa John's" && AppState.pizza.restriction == "Nut Allergy") {
+                    let johnsToppings = AppState.toppings.filter(t => t.papaJohns == true && t.type != "Nut" && t.name != "Pesto")
+                    let roll = Math.floor(Math.random() * (johnsToppings.length))
+                    let topping = johnsToppings[roll]
+                    const pizzaTopping = await api.post(`api/pizzaToppings`, { pizzaId: AppState.pizza.id, toppingId: topping.id })
+                    logger.log("papa johns:", pizzaTopping.data)
+                } else if (AppState.pizza.pizzaFrom == "Papa Murphy's" && AppState.pizza.restriction == "None") {
                     let murphysToppings = AppState.toppings.filter(t => t.papaMurphys == true)
                     let roll = Math.floor(Math.random() * (murphysToppings.length))
                     let topping = murphysToppings[roll]
                     const pizzaTopping = await api.post(`api/pizzaToppings`, { pizzaId: AppState.pizza.id, toppingId: topping.id })
                     logger.log("papa murphys:", pizzaTopping.data)
-                } else if (AppState.pizza.pizzaFrom == "Pizza Hut") {
+                } else if (AppState.pizza.pizzaFrom == "Papa Murphy's" && AppState.pizza.restriction == "Vegetarian") {
+                    let murphysToppings = AppState.toppings.filter(t => t.papaMurphys == true && t.type != "Meat")
+                    let roll = Math.floor(Math.random() * (murphysToppings.length))
+                    let topping = murphysToppings[roll]
+                    const pizzaTopping = await api.post(`api/pizzaToppings`, { pizzaId: AppState.pizza.id, toppingId: topping.id })
+                    logger.log("papa murphys:", pizzaTopping.data)
+                } else if (AppState.pizza.pizzaFrom == "Papa Murphy's" && AppState.pizza.restriction == "Nut Allergy") {
+                    let murphysToppings = AppState.toppings.filter(t => t.papaMurphys == true && t.type != "Nut" && t.name != "Pesto")
+                    let roll = Math.floor(Math.random() * (murphysToppings.length))
+                    let topping = murphysToppings[roll]
+                    const pizzaTopping = await api.post(`api/pizzaToppings`, { pizzaId: AppState.pizza.id, toppingId: topping.id })
+                    logger.log("papa murphys:", pizzaTopping.data)
+                } else if (AppState.pizza.pizzaFrom == "Pizza Hut" && AppState.pizza.restriction == "None") {
                     let hutToppings = AppState.toppings.filter(t => t.pizzaHut == true)
+                    let roll = Math.floor(Math.random() * (hutToppings.length))
+                    let topping = hutToppings[roll]
+                    const pizzaTopping = await api.post(`api/pizzaToppings`, { pizzaId: AppState.pizza.id, toppingId: topping.id })
+                    logger.log("pizza hut:", pizzaTopping.data)
+                } else if (AppState.pizza.pizzaFrom == "Pizza Hut" && AppState.pizza.restriction == "Vegetarian") {
+                    let hutToppings = AppState.toppings.filter(t => t.pizzaHut == true && t.type != "Meat")
+                    let roll = Math.floor(Math.random() * (hutToppings.length))
+                    let topping = hutToppings[roll]
+                    const pizzaTopping = await api.post(`api/pizzaToppings`, { pizzaId: AppState.pizza.id, toppingId: topping.id })
+                    logger.log("pizza hut:", pizzaTopping.data)
+                } else if (AppState.pizza.pizzaFrom == "Pizza Hut" && AppState.pizza.restriction == "Nut Allergy") {
+                    let hutToppings = AppState.toppings.filter(t => t.pizzaHut == true && t.type != "Nut" && t.name != "Pesto")
                     let roll = Math.floor(Math.random() * (hutToppings.length))
                     let topping = hutToppings[roll]
                     const pizzaTopping = await api.post(`api/pizzaToppings`, { pizzaId: AppState.pizza.id, toppingId: topping.id })
