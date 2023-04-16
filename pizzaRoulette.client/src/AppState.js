@@ -12,5 +12,6 @@ export const AppState = reactive({
   vegetableToppings: [],
   fruitToppings: [],
   nutToppings: [],
-  pizza: {}
+  pizza: {},
+  pizzaToppings: []
 })

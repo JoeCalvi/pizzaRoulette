@@ -1,6 +1,16 @@
 <template>
     <div class="PizzaPage">
-        this is the pizza page
+        <div class="container-fluid">
+            <div class="row justify-content-center page-height">
+                <div class="col-11 d-flex justify-content-center align-items-center">
+                    <div class="glass-card">
+                        <div v-for="p in pizzaToppings">
+                            <h1>{{ p?.topping.name }}</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -10,7 +20,8 @@ import { useRoute } from 'vue-router';
 import { logger } from '../utils/Logger';
 import Pop from '../utils/Pop';
 import { pizzasService } from '../services/PizzasService';
-import { onMounted } from 'vue';
+import { onMounted, computed } from 'vue';
+import { AppState } from '../AppState';
 
 export default {
     setup() {
@@ -41,10 +52,25 @@ export default {
             getToppingsByPizzaId();
         })
 
-        return {}
+        return {
+            pizzaToppings: computed(() => AppState.pizzaToppings)
+        }
     }
 }
 </script>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.page-height {
+    height: 84vh;
+}
+
+.glass-card {
+    background-color: rgba(100, 108, 105, 0.731);
+    padding: 5vw;
+    padding-bottom: 4vw;
+    border-radius: 10%;
+    color: white;
+    text-shadow: 1px 1px 2px black;
+}
+</style>
