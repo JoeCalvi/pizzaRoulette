@@ -1,5 +1,8 @@
 <template>
-  <nav class="navbar elevation-3 bg-danger px-3 d-flex justify-content-end align-items-center">
+  <nav class="navbar elevation-3 bg-danger px-3 d-flex justify-content-between align-items-center">
+    <router-link :to="{ name: 'Home' }">
+      <span class="btn selectable text-white text-uppercase my-2 my-lg-0 login-word">Home</span>
+    </router-link>
     <Login />
   </nav>
 </template>
@@ -14,4 +17,8 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.login-word {
+  text-shadow: 1px 2px 2px black;
+}
+</style>

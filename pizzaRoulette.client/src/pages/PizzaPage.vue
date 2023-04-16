@@ -2,8 +2,8 @@
     <div class="PizzaPage">
         <div class="container-fluid">
             <div class="row justify-content-center page-height">
-                <div class="col-11 d-flex justify-content-center align-items-center">
-                    <div class="glass-card">
+                <div class="col-6 d-flex justify-content-evenly align-items-center">
+                    <div class="glass-card text-center">
                         <div v-for="p in pizzaToppings">
                             <h1>{{ p?.topping.name }}</h1>
                         </div>
