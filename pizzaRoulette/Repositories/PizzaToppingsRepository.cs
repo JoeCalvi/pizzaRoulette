@@ -23,5 +23,16 @@ namespace pizzaRoulette.Repositories
             pizzaToppingData.Id = id;
             return pizzaToppingData;
         }
+
+        internal void DeletePizzaTopping(int pizzaToppingId)
+        {
+            string sql = @"
+            DELETE FROM pizzaToppings
+            WHERE id = @pizzaToppingId;
+            ";
+
+            _db.Execute(sql, new { pizzaToppingId });
+            return;
+        }
     }
 }

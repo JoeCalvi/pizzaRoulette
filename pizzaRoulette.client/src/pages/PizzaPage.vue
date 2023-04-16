@@ -2,10 +2,11 @@
     <div class="PizzaPage">
         <div class="container-fluid">
             <div class="row justify-content-center page-height">
-                <div class="col-6 d-flex justify-content-evenly align-items-center">
+                <div class="col-6 d-flex justify-content-center align-items-center">
                     <div class="glass-card text-center">
-                        <div v-for="p in pizzaToppings">
-                            <h1>{{ p?.topping.name }}</h1>
+                        <div v-for="p in pizzaToppings" class="d-flex justify-content-between mb-3">
+                            <h2>{{ p?.topping.name }}</h2>
+                            <button class="btn btn-danger text-white"><i class="mdi mdi-sync"></i></button>
                         </div>
                     </div>
                 </div>
@@ -20,7 +21,7 @@ import { useRoute } from 'vue-router';
 import { logger } from '../utils/Logger';
 import Pop from '../utils/Pop';
 import { pizzasService } from '../services/PizzasService';
-import { onMounted, computed } from 'vue';
+import { onMounted, computed, onUnmounted } from 'vue';
 import { AppState } from '../AppState';
 
 export default {
@@ -52,8 +53,16 @@ export default {
             getToppingsByPizzaId();
         })
 
+        onUnmounted(() => {
+            AppState.pizzaToppings = [];
+        })
+
         return {
-            pizzaToppings: computed(() => AppState.pizzaToppings)
+            pizzaToppings: computed(() => AppState.pizzaToppings),
+
+            async respinPizzaTopping() {
+
+            }
         }
     }
 }
@@ -69,6 +78,7 @@ export default {
     background-color: rgba(100, 108, 105, 0.731);
     padding: 5vw;
     padding-bottom: 4vw;
+    width: 100%;
     border-radius: 10%;
     color: white;
     text-shadow: 1px 1px 2px black;

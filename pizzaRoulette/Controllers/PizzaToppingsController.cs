@@ -24,5 +24,19 @@ namespace pizzaRoulette.Controllers
               return BadRequest(e.Message);
             }
         }
+
+        [HttpDelete("{pizzaToppingId}")]
+        public ActionResult<PizzaTopping> DeletePizzaTopping(int pizzaToppingId)
+        {
+          try 
+          {
+            string message = _pizzaToppingsService.DeletePizzaTopping(pizzaToppingId);
+            return Ok(message);
+          }
+          catch (Exception e)
+          {
+            return BadRequest(e.Message);
+          }
+        }
     }
 }
