@@ -7,7 +7,6 @@ class PizzasService {
     async createPizza(pizzaData) {
         const res = await api.post('api/pizzas', pizzaData)
         AppState.pizza = res.data
-
         const toppingCount = AppState.pizza.toppings
         for (let i = 0; i <= (toppingCount - 1); i++) {
             if (AppState.pizza.crazy == true) {
@@ -16,18 +15,30 @@ class PizzasService {
                 const pizzaTopping = await api.post(`api/pizzaToppings`, { pizzaId: AppState.pizza.id, toppingId: topping.id })
                 logger.log("crazy pizza:", pizzaTopping.data)
             } else if (AppState.pizza.crazy == false) {
-                // let traditionalToppings = AppState.toppings.filter(t => t.traditional == true)
-                // let roll = Math.floor(Math.random() * (traditionalToppings.length))
-                // let topping = traditionalToppings[roll]
-                // const pizzaTopping = await api.post(`api/pizzaToppings`, { pizzaId: AppState.pizza.id, toppingId: topping.id })
-                // logger.log("traditional:", pizzaTopping.data)
-                if (AppState.pizza.pizzaFrom == "Domino's") {
+
+                if (AppState.pizza.pizzaFrom == "Domino's" && AppState.pizza.restriction == "None") {
                     let dominosToppings = AppState.toppings.filter(t => t.dominos == true)
                     let roll = Math.floor(Math.random() * (dominosToppings.length))
                     let topping = dominosToppings[roll]
                     const pizzaTopping = await api.post(`api/pizzaToppings`, { pizzaId: AppState.pizza.id, toppingId: topping.id })
                     logger.log("dominos:", pizzaTopping.data)
-                } else if (AppState.pizza.pizzaFrom == "Little Caesar's") {
+
+                } else if (AppState.pizza.pizzaFrom == "Domino's" && AppState.pizza.restriction == "Vegetarian") {
+                    let dominosToppings = AppState.toppings.filter(t => t.dominos == true && t.type == "Vegetable")
+                    let roll = Math.floor(Math.random() * (dominosToppings.length))
+                    let topping = dominosToppings[roll]
+                    const pizzaTopping = await api.post(`api/pizzaToppings`, { pizzaId: AppState.pizza.id, toppingId: topping.id })
+                    logger.log("dominos:", pizzaTopping.data)
+
+                } else if (AppState.pizza.pizzaFrom == "Domino's" && AppState.pizza.restriction == "Nut Allergy") {
+                    let dominosToppings = AppState.toppings.filter(t => t.dominos == true && t.type != "Nut" && t.name != "Pesto")
+                    let roll = Math.floor(Math.random() * (dominosToppings.length))
+                    let topping = dominosToppings[roll]
+                    const pizzaTopping = await api.post(`api/pizzaToppings`, { pizzaId: AppState.pizza.id, toppingId: topping.id })
+                    logger.log("dominos:", pizzaTopping.data)
+
+                }
+                else if (AppState.pizza.pizzaFrom == "Little Caesar's") {
                     let caesarsToppings = AppState.toppings.filter(t => t.littleCaesars == true)
                     let roll = Math.floor(Math.random() * (caesarsToppings.length))
                     let topping = caesarsToppings[roll]
@@ -51,19 +62,6 @@ class PizzasService {
                     let topping = hutToppings[roll]
                     const pizzaTopping = await api.post(`api/pizzaToppings`, { pizzaId: AppState.pizza.id, toppingId: topping.id })
                     logger.log("pizza hut:", pizzaTopping.data)
-                }
-                if (AppState.pizza.restriction == "Vegetarian") {
-                    let veggieToppings = AppState.toppings.filter(t => t.type == "Vegetable")
-                    let roll = Math.floor(Math.random() * (veggieToppings.length))
-                    let topping = veggieToppings[roll]
-                    const pizzaTopping = await api.post(`api/pizzaToppings`, { pizzaId: AppState.pizza.id, toppingId: topping.id })
-                    logger.log("vegetarian:", pizzaTopping.data)
-                } else if (AppState.pizza.restriction == "Nut Allergy") {
-                    let noNutToppings = AppState.toppings.filter(t => t.type != "Nut" && t.name != "Pesto")
-                    let roll = Math.floor(Math.random() * (noNutToppings.length))
-                    let topping = noNutToppings[roll]
-                    const pizzaTopping = await api.post(`api/pizzaToppings`, { pizzaId: AppState.pizza.id, toppingId: topping.id })
-                    logger.log("no nuts:", pizzaTopping.data)
                 }
             }
         }
